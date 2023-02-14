@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Http\Requests\CategoryStoreRequest;
+use App\Http\Requests\CategoryUpdateRequest;
 
 class CategoryController extends Controller
 {
@@ -18,7 +19,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::latest('id')->select(['id', 'title', 'slug', 'updated_at'])->paginate();
+        $categories = Category::query()->select(['id', 'title', 'slug', 'updated_at'])->orderBy('id','DESC')->get();
 
         return view('backend.pages.category.index', compact('categories'));
     }
@@ -68,9 +69,12 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $category = Category::whereSlug($slug)->first();
+
+        return view('backend.pages.category.edit', compact('category'));
+
     }
 
     /**
@@ -80,9 +84,20 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryUpdateRequest $request, $slug)
     {
-        //
+        $category = Category::whereSlug($slug)->first();
+
+        $category->update([
+             'title' => $request->title,
+             'slug' =>Str::slug($request->title),
+             'is_active' => $request->filled('is_active')
+
+        ]);
+
+        Toastr::success('Category Updated Successfully');
+
+        return redirect()->route('category.index');
     }
 
     /**
@@ -91,8 +106,13 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        //
+        $category = Category::whereSlug($slug)->first()->delete();
+
+        Toastr::success('Category Deleted Successfully');
+
+        return redirect()->route('category.index');
+
     }
 }
