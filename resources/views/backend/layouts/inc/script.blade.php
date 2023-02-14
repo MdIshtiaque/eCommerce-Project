@@ -15,3 +15,5 @@
 <script src="{{ asset('assets/backend') }}/js/base/init.js"></script>
 <!-- Template Base Scripts End -->
 
+@stack('admin_script')
+

@@ -37,3 +37,5 @@
 
 <link rel="stylesheet" href="{{ asset('assets/backend') }}/css/main.css" />
 <script src="{{ asset('assets/backend') }}/js/base/loader.js"></script>
+
+@stack('admin_style')
