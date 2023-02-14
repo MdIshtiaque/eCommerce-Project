@@ -1,8 +1,12 @@
 @extends('backend.layouts.master')
 
+
+
 @section('title')
     Category Index
 @endsection
+
+
 
 @push('admin_style')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
@@ -13,6 +17,9 @@
         }
     </style>
 @endpush
+
+
+
 
 @section('admin_content')
     <div class="row">
@@ -38,7 +45,7 @@
                     </thead>
                     <tbody>
                         @foreach ($categories as $category)
-                            <th scope="row">{{ $categories->firstItem()+$loop->index }}</th>
+                            <th scope="row">{{ $categories->firstItem() + $loop->index }}</th>
                             <td>{{ $category->updated_at->format('d/M/Y') }}</td>
                             <td>{{ $category->title }}</td>
                             <td>{{ $category->slug }}</td>
@@ -67,6 +74,9 @@
         </div>
     </div>
 @endsection
+
+
+
 
 @push('admin_script')
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>

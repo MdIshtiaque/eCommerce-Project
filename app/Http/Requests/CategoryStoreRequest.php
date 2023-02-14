@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CategoryStoreRequest extends FormRequest
@@ -13,7 +14,7 @@ class CategoryStoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,8 @@ class CategoryStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => 'required|string|max:255|unique:categories,title'
+
         ];
     }
 }
