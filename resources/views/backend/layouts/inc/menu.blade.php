@@ -77,7 +77,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="Storefront.Categories.html">
+                    <a href="{{ route('category.index') }}">
                         <span class="label">Categories</span>
                     </a>
                 </li>
