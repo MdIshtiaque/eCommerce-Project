@@ -48,7 +48,10 @@
                         @foreach ($testimonials as $key => $testimonial)
                             <th scope="row">{{ $key + 1 }}</th>
                             <td>{{ $testimonial->updated_at->format('d/M/Y') }}</td>
-                            <td>{{ $testimonial->client_image }}</td>
+                            <td>
+                                <img src="{{ asset('uploads/testimonials') }}/{{ $testimonial->client_image }}"
+                                    alt="" class="img-fluid rounded-circle">
+                            </td>
                             <td>{{ $testimonial->client_name }}</td>
                             <td>{{ $testimonial->client_designation }}</td>
 
@@ -63,10 +66,13 @@
                                                 <i class="fas fa-edit"></i> Edit</a>
                                         </li>
                                         <li>
-                                            <form action="{{ route('testimonial.destroy', $testimonial->client_name_slug) }}" method="post">
+                                            <form
+                                                action="{{ route('testimonial.destroy', $testimonial->client_name_slug) }}"
+                                                method="post">
                                                 @method('DELETE')
                                                 @csrf
-                                                <button type="submit" class="dropdown-item del_warn"><i class="fas fa-trash"></i>
+                                                <button type="submit" class="dropdown-item del_warn"><i
+                                                        class="fas fa-trash"></i>
                                                     Delete</button>
 
                                             </form>
@@ -111,7 +117,7 @@
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, delete it!'
-            }).then( async result => {
+            }).then(async result => {
                 if (result.isConfirmed) {
                     await form.submit();
                     Swal.fire(

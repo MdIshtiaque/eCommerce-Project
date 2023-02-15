@@ -5,6 +5,9 @@
 @endsection
 
 @push('admin_style')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css"
+        integrity="sha512-In/+MILhf6UMDJU4ZhDL0R0fEpsp4D3Le23m6+ujDWXwl3whwpucJG1PEmI3B07nyJx+875ccs+yX2CqQJUxUw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 @endpush
 
 
@@ -21,7 +24,7 @@
         <div class="col-12 mt-5">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('testimonial.store') }}" method="post">
+                    <form action="{{ route('testimonial.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label for="client-name" class="form-label">
@@ -62,13 +65,31 @@
                                 Client Message
                             </label>
 
-                            <input type="text" name="client_message" id=""
+                            <textarea name="client_message" id=""
                                 class="form-control @error('client_message')
                             is-invalid
                             @enderror"
-                                placeholder="Enter Client message">
+                                placeholder="Enter Client message" cols='30' rows='5'></textarea>
 
                             @error('client_message')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="client-image" class="form-label">
+                                Client Image
+                            </label>
+
+                            <input type="file" name="client_image" id=""
+                                class="form-control dropify  @error('client_image')
+                            is-invalid
+                            @enderror"
+                                placeholder="Upload Client Image">
+
+                            @error('client_image')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -102,4 +123,17 @@
 
 
 @push('admin_script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"
+        integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $('.dropify').dropify({
+            messages: {
+                'default': 'Drag and drop a file here or click',
+                'replace': 'Drag and drop or click to replace',
+                'remove': 'Remove',
+                'error': 'Ooops, something wrong happended.'
+            }
+        });
+    </script>
 @endpush
