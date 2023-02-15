@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -25,7 +26,13 @@ class CategoryStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string|max:255|unique:categories,title'
+            'title' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('categories', 'title')->whereNull('deleted_at'),
+
+            ],
 
         ];
     }
