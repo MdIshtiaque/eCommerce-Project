@@ -7,7 +7,7 @@
             </a>
         </li>
         <li>
-            <a href="#categories" data-href="">
+            <a href="#categories" data-href="Products.html">
                 <i data-cs-icon="cupcake" class="icon" data-cs-size="18"></i>
                 <span class="label">Categories</span>
             </a>
