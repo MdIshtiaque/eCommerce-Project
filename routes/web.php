@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,12 +20,8 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/', function () {
-    return view('forntend.pages.home');
-});
-// Route::get('/admin', function () {
-//     return view('backend.pages.Auth.login');
-// });
+Route::get('/', [HomeController::class, 'home'])->name('home');
+
 
 Route::prefix('admin/')->group(function(){
     Route::get('login', [LoginController::class, 'index'])->name('admin.login');
