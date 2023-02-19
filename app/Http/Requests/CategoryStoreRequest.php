@@ -33,6 +33,7 @@ class CategoryStoreRequest extends FormRequest
                 Rule::unique('categories', 'title')->whereNull('deleted_at'),
 
             ],
+            'category_image' => 'required|image'
 
         ];
     }

@@ -20,7 +20,7 @@
                                 </div>
                                 <div class="test-img2">
                                     <img src="{{ asset('uploads/testimonials') }}/{{ $testimonial->client_image }}"
-                                        alt="">
+                                        alt="" class="img-fluid rounded-circle">
                                 </div>
                             </div>
                         @endforeach
