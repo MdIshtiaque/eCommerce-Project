@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +34,7 @@ Route::prefix('admin/')->group(function(){
         Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.index');
         Route::resource('category',CategoryController::class);
         Route::resource('testimonial',TestimonialController::class);
+        Route::resource('product',ProductController::class);
     });
 
 

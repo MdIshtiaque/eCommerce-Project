@@ -32,7 +32,7 @@ class ProductFactory extends Factory
                 'short_description' => $this->faker->paragraph (3),
                 'long_description' => $this->faker->paragraph (6),
                 'additional_info' => $this->faker->paragraph (2),
-                'product_image' => "https://picsum.photos/300",
+                'product_image' => "default_product.jpg",
                 'product_rating' => $this->faker->numberBetween(0, 5),
             ];
         }
