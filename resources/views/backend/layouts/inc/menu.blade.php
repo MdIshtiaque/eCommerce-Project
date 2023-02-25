@@ -31,13 +31,13 @@
             </a>
             <ul id="products">
                 <li>
-                    <a href="Products.List.html">
+                    <a href="{{ route('product.index') }}">
                         <span class="label">List</span>
                     </a>
                 </li>
                 <li>
-                    <a href="Products.Detail.html">
-                        <span class="label">Detail</span>
+                    <a href="{{ route('product.create') }}">
+                        <span class="label">Add New Product</span>
                     </a>
                 </li>
             </ul>

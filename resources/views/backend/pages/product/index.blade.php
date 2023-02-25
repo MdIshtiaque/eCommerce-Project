@@ -10,6 +10,8 @@
 
 @push('admin_style')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+
 
     <style>
         .datatable_length {
@@ -51,7 +53,8 @@
                         @foreach ($products as $key => $product)
                             <th scope="row">{{ $key + 1 }}</th>
                             <td>
-                                <img src="{{ asset('uploads/products') }}/{{ $product->product_image }}" alt="" class="img-fluid rounded h-20 w-20">
+                                <img src="{{ asset('uploads/products') }}/{{ $product->product_image }}" alt=""
+                                    class="img-fluid rounded h-20 w-20">
                             </td>
                             <td>{{ $product->updated_at->format('d/M/Y') }}</td>
                             <td>{{ $product->category->title }}</td>
@@ -60,7 +63,16 @@
                             <td><span class="badge bg-success">{{ $product->product_stock }}</span>/
                                 <span class="badge bg-danger">{{ $product->alert_quantity }}</span>
                             </td>
-                            <td>{{ $product->product_rating }}</td>
+
+
+                            <td>
+                                @for ($i = 0; $i < $product->product_rating; $i++)
+                                    <i class="fas fa-star"></i>
+                                @endfor
+                            </td>
+
+
+
 
                             <td>
                                 <div class="dropdown">
